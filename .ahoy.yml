@@ -27,6 +27,8 @@ commands:
       ahoy runphp cp ${SITE_PATH}/sites/default/default.settings.php ${SITE_PATH}/sites/default/settings.php
       echo "\$settings['config_sync_directory'] = '../config/sync';" >> ${SITE_PATH}/sites/default/settings.php
       ahoy runphp mkdir ${SITE_PATH}/sites/default/files
+      mkdir ./web/modules/custom 
+      echo "ln -sr lib web/modules/custom"
       ahoy permissions
 
   install:

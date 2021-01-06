@@ -10,6 +10,14 @@ A working example.
 5. Visit http://localhost:8080/web
 
 Login: `admin` / `admin` 
+
+## Enable the React module
+Symlink the `lib`
+- `ln -sr lib web/modules/custom`
+
+Enable the module
+- `ahoy drush en mt_react_demo`
+
 ### Environment
 - Web server: localhost:8080
 - PHPMy Admin: localhost:8090

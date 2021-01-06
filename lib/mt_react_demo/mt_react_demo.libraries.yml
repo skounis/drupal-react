@@ -1,0 +1,15 @@
+mt_react_demo:
+  version: 1.x
+  js:
+    js/init.js: {}
+    js/react/static/js/2.96270960.chunk.js: {}
+    js/react/static/js/main.698716d9.chunk.js: {}
+  css:
+    component:
+      css/style.css: {}
+      js/react/static/css/2.ccc6f86f.chunk.css: {}
+      js/react/static/css/main.3f9f89c2.chunk.css: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/jquery.once
