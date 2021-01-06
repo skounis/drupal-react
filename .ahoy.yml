@@ -1,0 +1,95 @@
+ahoyapi: v2
+commands:
+
+  up:
+    usage: Start the docker containers.
+    cmd: |
+      if [ ! -d "data/db/mysql" ]; then
+        mkdir -p data/db/mysql
+      fi
+      docker-compose up -d
+
+  down:
+    usage: Stop the docker containers.
+    cmd: |
+      docker-compose down
+
+  reboot:
+    usage: Stop and start the containers.
+    cmd: |
+      ahoy down && ahoy up
+
+  prepare:
+    usage: Prepare writh permissions within the container.
+    cmd: |
+      . .env
+      ahoy permissions
+      ahoy runphp cp ${SITE_PATH}/sites/default/default.settings.php ${SITE_PATH}/sites/default/settings.php
+      echo "\$settings['config_sync_directory'] = '../config/sync';" >> ${SITE_PATH}/sites/default/settings.php
+      ahoy runphp mkdir ${SITE_PATH}/sites/default/files
+      ahoy permissions
+
+  install:
+    usage: Prepare writh permissions within the container.
+    cmd: |
+      # ahoy drush si standard --db-url=mysql://root@mysql/drupal
+      ahoy drush si minimal --db-url=mysql://root@mysql/drupal -y
+      ahoy drush upwd --password=admin admin -y
+      ahoy drush cset system.site uuid "fcb23406-204f-4794-aa99-da92748cf85e" -y
+      ahoy drush cim -y
+  
+  db-out: 
+    usage: Export database with drush.
+    cmd: |
+      ahoy drush sql-dump > ./work.sql
+
+  db-in: 
+    usage: Import database with drush.
+    cmd: |
+      echo "ahoy sh"
+      echo "drush sql-cli < ./database/dump.sql"
+  logs: 
+    usage: Display logs.
+    cmd: |
+      docker-compose logs -f
+#
+# Tools
+#
+  runphp:
+    usage: Run a command inside a running php container.
+    cmd: |
+      if [ -f "docker-compose.local.yml" ]; then
+        docker-compose -f docker-compose.local.yml exec web $@
+        else
+        docker-compose exec web $@
+      fi
+
+  mysql:
+    usage: Run a Mysql command.
+    cmd: |
+      ahoy runphp mysql -h mysql -u root $@
+
+  composer:
+    usage: Run a Composer command.
+    cmd: |
+      ahoy runphp composer $@
+
+  sh:
+    use: Get shell
+    cmd: |
+      ahoy runphp bash
+  
+  drush: 
+    use: Run drush command within the web container
+    cmd: |
+      . .env
+      ahoy runphp drush $@
+
+  permissions:
+    use: Fix ownership and permissions
+    cmd: |
+      . .env
+      sudo chown ${USER}:${USER} ./* -R
+      chmod 666 ${SITE_PATH}/sites/default/settings*
+      chmod a+wX ${SITE_PATH}/sites/default/files -R
+    
