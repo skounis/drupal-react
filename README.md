@@ -27,3 +27,8 @@ Enable the module
 
 ### Shell access
 - `ahoy sh`
+
+
+## References
+- [A Recipe for an Embedded React Component in Drupal](https://www.mediacurrent.com/blog/recipe-embedded-react-component-drupal/)
+- [Using React library on Drupal](https://www.appnovation.com/blog/using-react-library-drupal)
