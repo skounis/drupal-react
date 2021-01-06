@@ -2,8 +2,8 @@ mt_react_demo:
   version: 1.x
   js:
     js/init.js: {}
-    js/react/static/js/2.96270960.chunk.js: {}
-    js/react/static/js/main.698716d9.chunk.js: {}
+    js/react/static/js/2.6255bdd3.chunk.js: {}
+    js/react/static/js/main.ee6d6b64.chunk.js: {}
   css:
     component:
       css/style.css: {}

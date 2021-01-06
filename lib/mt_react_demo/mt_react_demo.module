@@ -44,8 +44,8 @@ function mt_react_demo_page_bottom(array &$page_bottom) {
     '#type' => 'html_tag',
     '#tag' => 'div',
     '#attributes' => [
-      'id' => 'root',
-      'class' => 'root',
+      'id' => 'react-toast',
+      'class' => 'react-toast',
     ],
   ];
 }
