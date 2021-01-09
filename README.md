@@ -32,3 +32,31 @@ Enable the module
 ## References
 - [A Recipe for an Embedded React Component in Drupal](https://www.mediacurrent.com/blog/recipe-embedded-react-component-drupal/)
 - [Using React library on Drupal](https://www.appnovation.com/blog/using-react-library-drupal)
+
+
+# How to Send Message
+Use the Firestore database in the project
+- https://console.firebase.google.com/u/0/project/better-events-drupal/overview
+
+Create `toast` documents by using the structure:
+```
+{
+   body: String
+   intention: String //info | warning | error
+}
+```
+
+Example
+```
+{
+   intention: "info",
+   body: "Foo bar buzz."
+}
+```
+```
+{
+   body: "Foo bar buzz."
+}
+```
+
+
