@@ -42,7 +42,7 @@ Create `toast` documents by using the structure:
 ```
 {
    body: String
-   intention: String //info | warning | error
+   intention: String // info | success | warn | error | dark
 }
 ```
 
